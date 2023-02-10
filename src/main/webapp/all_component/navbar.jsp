@@ -18,8 +18,8 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
      
-      <a class="btn  my-2 btn-light my-sm-0 mr-2" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
-       <a class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
+      <a href="login.jsp" class="btn  my-2 btn-light my-sm-0 mr-2" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a>
+       <a href="register.jsp" class="btn btn-light my-2 my-sm-0" type="submit"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a>
     </form>
   </div>
 </nav>
