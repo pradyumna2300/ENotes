@@ -20,23 +20,43 @@
 						<i class="fa fa-user-plus fa-3x" aria-hidden="true"></i>
 						<H4>LOGIN</H4>
 					</div>
+					
+					<%
+					String logMsg = (String) session.getAttribute("login-Failed");
+					if (logMsg != null) {
+					%>
+
+					<div class="alert alert-danger" role="alert"><%=logMsg%>Login<a
+							href="login.jsp">clickHere</a>
+					</div>
+
+					<%
+					session.removeAttribute("login-Failed");
+					}
+					%>
+					
+					
+					
+					
+					
+					
 					<div class="card-body">
 
-						<form>
+						<form action="LoginServlet" method="post">
 						
 						    
 							
 							<div class="form-group">
 								<label for="exampleInputEmail1">Email address</label> <input
 									type="email" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" placeholder="Enter email">
+									aria-describedby="emailHelp" name="uemail" placeholder="Enter email">
 								<small id="emailHelp" class="form-text text-muted">We'll
 									never share your email with anyone else.</small>
 							</div>
 							<div class="form-group">
 								<label for="exampleInputPassword1">Password</label> <input
 									type="password" class="form-control" id="exampleInputPassword1"
-									placeholder="Password">
+									name="upassword" placeholder="Password">
 							</div>
 							<button type="submit" class="btn btn-primary badge-pill btn-block ">LOGIN</button>
 						</form>

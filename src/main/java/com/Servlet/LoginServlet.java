@@ -1,8 +1,6 @@
 package com.Servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +13,16 @@ import com.Db.DBConnect;
 import com.User.UserDetails;
 
 /**
- * Servlet implementation class UserServlet
+ * Servlet implementation class LoginServlet
  */
-@WebServlet("/UserServlet")
-public class UserServlet extends HttpServlet {
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserServlet() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,37 +41,27 @@ public class UserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String name=request.getParameter("fname");
 		String email=request.getParameter("uemail");
 		String password=request.getParameter("upassword");
 		
 		UserDetails us=new UserDetails();
-		us.setName(name);
+		
 		us.setEmail(email);
 		us.setPassword(password);
 		
 		UserDAO dao=new UserDAO(DBConnect.getConn());
-		boolean f=dao.addUser(us);
-		//PrintWriter out=response.getWriter();
+		boolean f=dao.loginUser(us);
 		HttpSession session;
-		if(f) {
-			//out.print("Data stored Succesfully");
+		if(f){
+			response.sendRedirect("Home.jsp");
+		}
+		else {
 			session=request.getSession();
-			session.setAttribute("reg-sucess", "Regestration succefull");
-			response.sendRedirect("register.jsp");
-		}else {
-			//out.print("Data NOT stored ");
-			session=request.getSession();
-			session.setAttribute("reg-Failed", "Regestration Failed ");
-			response.sendRedirect("register.jsp");
+			session.setAttribute("login-Failed", "login Failed check emailID and Password ");
+			response.sendRedirect("login.jsp");
 		}
 		
-		
-		
-		
 		doGet(request, response);
-		
-		
 	}
 
 }
